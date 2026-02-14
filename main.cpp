@@ -1,40 +1,41 @@
-// This file should implement the game using a custom implementation of a BST (based on your earlier BST implementation)
 #include <iostream>
 #include <fstream>
 #include <string>
 #include "card.h"
 #include "card_list.h"
-//Do not include set in this file
 
 using namespace std;
 
-int main(int argv, char** argc){
-  if(argv < 3){
-    cout << "Please provide 2 file names" << endl;
-    return 1;
-  }
-  
-  ifstream cardFile1 (argc[1]);
-  ifstream cardFile2 (argc[2]);
-  string line;
+int main(int argc, char** argv) {
+    if (argc < 3) {
+        cout << "Please provide 2 file names" << endl;
+        return 1;
+    }
 
-  if (cardFile1.fail() || cardFile2.fail() ){
-    cout << "Could not open file " << argc[2];
-    return 1;
-  }
+    ifstream cardFile1(argv[1]);
+    ifstream cardFile2(argv[2]);
+    string line;
 
-  //Read each file
-  while (getline (cardFile1, line) && (line.length() > 0)){
+    if (cardFile1.fail() || cardFile2.fail()) {
+        cout << "Could not open file " << argv[2];
+        return 1;
+    }
 
-  }
-  cardFile1.close();
+    CardBST aliceHand;
+    CardBST bobHand;
 
+    // Read each file
+    while (getline(cardFile1, line) && line.length() > 0) {
+        aliceHand.insert(Card::parse(line));
+    }
+    cardFile1.close();
 
-  while (getline (cardFile2, line) && (line.length() > 0)){
+    while (getline(cardFile2, line) && line.length() > 0) {
+        bobHand.insert(Card::parse(line));
+    }
+    cardFile2.close();
 
-  }
-  cardFile2.close();
-  
-  
-  return 0;
+    playGame(aliceHand, bobHand);
+
+    return 0;
 }

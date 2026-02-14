@@ -1,3 +1,7 @@
+// card.h
+// Author: Tanuj Siripurapu & Hursh Shah
+// All class declarations related to defining a single card go here
+
 #ifndef CARD_H
 #define CARD_H
 

@@ -1,3 +1,7 @@
+// card.cpp
+// Author: Tanuj Siripurapu & Hursh Shah
+// Implementation of the classes defined in card.h
+
 #include "card.h"
 #include <ostream>
 #include <sstream>
@@ -41,11 +45,21 @@ bool Card::operator>(const Card& other) const {
 
 std::ostream& operator<<(std::ostream& os, const Card& card) {
     os << card.suit << " ";
-    if (card.value == 1) os << "a";
-    else if (card.value == 11) os << "j";
-    else if (card.value == 12) os << "q";
-    else if (card.value == 13) os << "k";
-    else os << card.value;
+    if (card.value == 1) {
+        os << "a";
+    }
+    else if (card.value == 11) {
+        os << "j";
+    }
+    else if (card.value == 12) {
+        os << "q";
+    }
+    else if (card.value == 13) {
+        os << "k";
+    }
+    else {
+        os << card.value;
+    }
     return os;
 }
 
@@ -55,9 +69,15 @@ Card Card::parse(const std::string& line) {
     std::string valueStr = line.substr(2);
     int value;
     if (valueStr == "a") value = 1;
-    else if (valueStr == "j") value = 11;
-    else if (valueStr == "q") value = 12;
-    else if (valueStr == "k") value = 13;
+    else if (valueStr == "j") {
+        value = 11;
+    }
+    else if (valueStr == "q") {
+        value = 12;
+    }
+    else if (valueStr == "k") {
+        value = 13;
+    }
     else value = std::stoi(valueStr);
     return Card(suit, value);
 }
